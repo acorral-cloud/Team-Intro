@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👋 New Team Member Intro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 30px 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .intro-text {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+        
+        .question-group {
+            margin-bottom: 28px;
+        }
+        
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .sub-label {
+            display: block;
+            color: #666;
+            font-weight: 400;
+            font-size: 13px;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .file-upload {
+            margin-top: 8px;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .file-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: 2px dashed #999;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .file-label:hover {
+            background: #e8e8e8;
+            border-color: #667eea;
+        }
+        
+        .file-preview {
+            margin-top: 12px;
+            display: none;
+        }
+        
+        .file-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .file-name {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px 18px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👋 New Team Member Intro</h1>
+        <p class="intro-text">Welcome to the team! Please answer all 7 questions and include a photo of yourself so we can put faces to names 😊</p>
+        
+        <form id="introForm" action="https://formspree.io/f/xwvnpzzr" method="POST" enctype="multipart/form-data">
+            <div class="question-group">
+                <label for="q1">What's your name and your role on the team?</label>
+                <input type="text" id="q1" name="q1" required placeholder="e.g., Sarah Johnson - Marketing Coordinator">
+            </div>
+            
+            <div class="question-group">
+                <label for="q2">
+                    How long have you been working in your field, or what experience are you most excited to bring here?
+                </label>
+                <textarea id="q2" name="q2" required placeholder="Share your background and what excites you..."></textarea>
+            </div>
+            
+            <div class="question-group">
+                <label for="q3">
+                    What's one thing you're really good at (work-related or not)?
+                </label>
+                <input type="text" id="q3" name="q3" required placeholder="e.g., Making spreadsheets, baking cookies, solving puzzles...">
+            </div>
+            
+            <div class="question-group">
+                <label for="q4">
+                    When you're not working, how do you like to spend your time?
+                </label>
+                <textarea id="q4" name="q4" required placeholder="Hobbies, interests, passions..."></textarea>
+            </div>
+            
+            <div class="question-group">
+                <label for="q5">
+                    Do you have any pets?
+                    <span class="sub-label">If yes, what are their names — we'd love to see a picture! 📸🐾</span>
+                </label>
+                <input type="text" id="q5" name="q5" placeholder="e.g., Yes! Max (golden retriever) and Luna (tabby cat)">
+                
+                <div class="file-upload">
+                    <label for="petPhoto" class="file-label">📷 Upload pet photo (optional)</label>
+                    <input type="file" id="petPhoto" name="petPhoto" accept="image/*" capture="environment">
+                    <div class="file-preview" id="petPreview">
+                        <img id="petImg" src="" alt="Pet preview">
+                        <div class="file-name" id="petFileName"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label for="q6">
+                    Fun fact about you
+                    <span class="sub-label">(Anything you want — surprising, random, or just fun)</span>
+                </label>
+                <textarea id="q6" name="q6" required placeholder="Share something interesting about yourself..."></textarea>
+            </div>
+            
+            <div class="question-group">
+                <label for="q7">
+                    What's one thing your teammates should know about working with you?
+                    <span class="sub-label">(How you like to communicate, what helps you do your best work, etc.)</span>
+                </label>
+                <textarea id="q7" name="q7" required placeholder="e.g., I'm a morning person, I prefer written updates, I love brainstorming sessions..."></textarea>
+            </div>
+            
+            <div class="question-group">
+                <label for="selfPhoto">
+                    Photo of yourself
+                    <span class="sub-label">So we can put faces to names! 😊</span>
+                </label>
+                <div class="file-upload">
+                    <label for="selfPhoto" class="file-label">📷 Upload your photo</label>
+                    <input type="file" id="selfPhoto" name="selfPhoto" accept="image/*" capture="user" required>
+                    <div class="file-preview" id="selfPreview">
+                        <img id="selfImg" src="" alt="Your preview">
+                        <div class="file-name" id="selfFileName"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Introduction 🎉</button>
+            
+            <div class="success-message" id="successMessage">
+                ✅ Your introduction has been submitted! Welcome to the team! 🎉
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Image preview functionality
+        function setupImagePreview(inputId, previewId, imgId, fileNameId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            const img = document.getElementById(imgId);
+            const fileName = document.getElementById(fileNameId);
+            
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        img.src = e.target.result;
+                        fileName.textContent = file.name;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        
+        setupImagePreview('petPhoto', 'petPreview', 'petImg', 'petFileName');
+        setupImagePreview('selfPhoto', 'selfPreview', 'selfImg', 'selfFileName');
+        
+        // Form submission
+        document.getElementById('introForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                timestamp: new Date().toISOString(),
+                name_and_role: formData.get('q1'),
+                experience: formData.get('q2'),
+                good_at: formData.get('q3'),
+                free_time: formData.get('q4'),
+                pets: formData.get('q5'),
+                fun_fact: formData.get('q6'),
+                working_style: formData.get('q7'),
+                has_pet_photo: formData.get('petPhoto').size > 0,
+                has_self_photo: formData.get('selfPhoto').size > 0
+            };
+            
+            // In a real implementation, you would send this data to a server
+            // For now, we'll log it and show success message
+            console.log('Form submitted:', data);
+            console.log('Files:', {
+                selfPhoto: formData.get('selfPhoto'),
+                petPhoto: formData.get('petPhoto')
+            });
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            
+            // Optional: Reset form after 3 seconds
+            setTimeout(() => {
+                if (confirm('Would you like to submit another introduction?')) {
+                    this.reset();
+                    document.getElementById('petPreview').style.display = 'none';
+                    document.getElementById('selfPreview').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'none';
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
