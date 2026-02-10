@@ -288,48 +288,29 @@
         setupImagePreview('selfPhoto', 'selfPreview', 'selfImg', 'selfFileName');
         
         // Form submission
-        document.getElementById('introForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect form data
-            const formData = new FormData(this);
-            const data = {
-                timestamp: new Date().toISOString(),
-                name_and_role: formData.get('q1'),
-                experience: formData.get('q2'),
-                good_at: formData.get('q3'),
-                free_time: formData.get('q4'),
-                pets: formData.get('q5'),
-                fun_fact: formData.get('q6'),
-                working_style: formData.get('q7'),
-                has_pet_photo: formData.get('petPhoto').size > 0,
-                has_self_photo: formData.get('selfPhoto').size > 0
+        // Image preview only - let form submit naturally to Formspree
+function setupImagePreview(inputId, previewId, imgId, fileNameId) {
+    const input = document.getElementById(inputId);
+    const preview = document.getElementById(previewId);
+    const img = document.getElementById(imgId);
+    const fileName = document.getElementById(fileNameId);
+    
+    input.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                img.src = e.target.result;
+                fileName.textContent = file.name;
+                preview.style.display = 'block';
             };
-            
-            // In a real implementation, you would send this data to a server
-            // For now, we'll log it and show success message
-            console.log('Form submitted:', data);
-            console.log('Files:', {
-                selfPhoto: formData.get('selfPhoto'),
-                petPhoto: formData.get('petPhoto')
-            });
-            
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Scroll to success message
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-            
-            // Optional: Reset form after 3 seconds
-            setTimeout(() => {
-                if (confirm('Would you like to submit another introduction?')) {
-                    this.reset();
-                    document.getElementById('petPreview').style.display = 'none';
-                    document.getElementById('selfPreview').style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'none';
-                }
-            }, 2000);
-        });
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+setupImagePreview('petPhoto', 'petPreview', 'petImg', 'petFileName');
+setupImagePreview('selfPhoto', 'selfPreview', 'selfImg', 'selfFileName');
     </script>
 </body>
 </html>
